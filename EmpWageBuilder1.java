@@ -1,4 +1,4 @@
-public class EmpWageBuilder {
+public class EmpWageBuilder1 {
 
 	public static void main(String[] args) {
 	//Constants
