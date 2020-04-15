@@ -3,23 +3,30 @@ public class EmpWageBuilder {
 	public static final int IS_FULL_TIME=1;
 	public static final int IS_PART_TIME=0;
 	public static final int EMP_RATE_PER_HRS=20;
+	public static final int NO_OF_WORKING_HRS=2;
+
 	public static void main(String args[]) {
 		System.out.println("Welcome to Employee Wage Computation");
+
 		//variables
 		int empHrs=0;
 		int empWage=0;
-		int empCheck=((int)Math.floor(Math.random()*10))%2;
-		switch(empCheck){
-			case IS_FULL_TIME:
-				empHrs=8;
-				break;
-			case IS_PART_TIME:
-				empHrs=4;
-				break;
-			default:
-				empHrs=0;
+
+		for(int day=1;day<=NO_OF_WORKING_HRS;day++) {
+			int empCheck=((int)Math.floor(Math.random()*10))%2;
+
+			switch(empCheck) {
+				case IS_FULL_TIME:
+					empHrs=8;
+					break;
+				case IS_PART_TIME:
+					empHrs=4;
+					break;
+				default:
+					empHrs=0;
+			}
+			empWage=empHrs*EMP_RATE_PER_HRS;
 		}
-		empWage=empHrs*EMP_RATE_PER_HRS;
-		System.out.println("Emp Wage for "+empHrs+" hrs : "+empWage);
+		System.out.println("Emp Wages for month : "+empWage);
 	}
 }
