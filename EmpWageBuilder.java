@@ -6,9 +6,7 @@ public class EmpWageBuilder {
 	public static final int NUM_WORKING_DAYS=20;	
 	public static final int MAX_HRS_IN_MONTH=100;
 
-	public static void main(String args[]) {
-		System.out.println("Welcome to Employee Wage Computation");
-
+	public void callEmpWage() {
 		//variables
 		int empHrs=0;
 		int empWage=0;
@@ -16,8 +14,7 @@ public class EmpWageBuilder {
 		int totalEmpWage=0;
 		int totalEmpHrs=0;
 
-		while (totalEmpHrs <= MAX_HRS_IN_MONTH &&
-		       totalWorkingDays < NUM_WORKING_DAYS) {
+		while (totalEmpHrs <= MAX_HRS_IN_MONTH && totalWorkingDays < NUM_WORKING_DAYS) {
 			totalWorkingDays++;
 			int empCheck = ((int) Math.floor(Math.random() * 10)) % 3;
 
@@ -36,5 +33,11 @@ public class EmpWageBuilder {
 			totalEmpWage += empWage;
 		}
 		System.out.println("Employee Wages for month : "+totalEmpWage);
+	}
+
+	public static void main(String args[]) {
+		System.out.println("Welcome to Employee Wage Computation");
+		EmpWageBuilder cmp = new EmpWageBuilder();
+		cmp.callEmpWage();
 	}
 }
