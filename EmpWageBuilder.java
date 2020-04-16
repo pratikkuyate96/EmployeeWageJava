@@ -2,9 +2,16 @@ public class EmpWageBuilder {
 	//CONSTANTS
 	public static final int IS_FULL_TIME=1;
 	public static final int IS_PART_TIME=0;
-	public static final int EMP_RATE_PER_HRS=20;
-	public static final int NUM_WORKING_DAYS=20;	
-	public static final int MAX_HRS_IN_MONTH=100;
+	public int EMP_RATE_PER_HRS;
+	public int NUM_WORKING_DAYS;
+	public int MAX_HRS_IN_MONTH;
+
+	public EmpWageBuilder(int EMP_RATE_PER_HRS,int NUM_WORKING_DAYS,int MAX_HRS_IN_MONTH)
+	{
+		this.EMP_RATE_PER_HRS=EMP_RATE_PER_HRS;
+		this.NUM_WORKING_DAYS=NUM_WORKING_DAYS;
+		this.MAX_HRS_IN_MONTH=MAX_HRS_IN_MONTH;
+	}
 
 	public void callEmpWage() {
 		//variables
@@ -37,7 +44,11 @@ public class EmpWageBuilder {
 
 	public static void main(String args[]) {
 		System.out.println("Welcome to Employee Wage Computation");
-		EmpWageBuilder cmp = new EmpWageBuilder();
-		cmp.callEmpWage();
+		EmpWageBuilder bridgelabz=new EmpWageBuilder(20,20,100);
+		EmpWageBuilder capgemini=new EmpWageBuilder(20,20,100);
+		EmpWageBuilder accenture=new EmpWageBuilder(20,20,100);
+		bridgelabz.callEmpWage();
+		capgemini.callEmpWage();
+		accenture.callEmpWage();
 	}
 }
