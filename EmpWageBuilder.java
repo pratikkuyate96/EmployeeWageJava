@@ -1,3 +1,8 @@
+import java.util.ArrayList;
+interface WageComputable {
+	public void callEmpWage(CompanyEmpWage companyObj);
+}
+
 public class EmpWageBuilder {
 	//Constant
 	public final int IS_PART_TIME = 0;
@@ -24,7 +29,7 @@ public class EmpWageBuilder {
 					empHrs=0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("Day : " + totalWorkingDays + "Employee hours : " + empHrs);
+			System.out.println("Day : " + totalWorkingDays + " Employee hours : " + empHrs);
 		}
 		company.setTotalEmpWage(totalEmpHrs * company.getEmpRatePerHrs());
 		System.out.println("Total Wage of " + company.getCompanyName() + " Employee is " + company.getTotalEmpWage());	
@@ -33,13 +38,13 @@ public class EmpWageBuilder {
 	public static void main(String args[]) {
 		System.out.println("Welcome to Employee Wage Computation");
 		EmpWageBuilder empwagecomputation = new EmpWageBuilder();
-		CompanyEmpWage[] company = new CompanyEmpWage[2];
+		ArrayList<CompanyEmpWage> company = new ArrayList<CompanyEmpWage>();
 	
-		company[0] = new CompanyEmpWage("BRIDGELABZ",20,20,100);
-		empwagecomputation.callEmpWage(company[0]);
+		company.add( new CompanyEmpWage("BRIDGELABZ",20,20,100));
+		empwagecomputation.callEmpWage(company.get(0));
 
-		company[1]= new CompanyEmpWage("CAPGMINI",50, 15, 100 );
-		empwagecomputation.callEmpWage(company[1]);
+		company.add( new CompanyEmpWage("CAPGMINI",50,15,100));
+		empwagecomputation.callEmpWage(company.get(1));
 	}
 }
 
