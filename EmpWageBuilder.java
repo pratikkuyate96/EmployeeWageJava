@@ -2,15 +2,28 @@ public class EmpWageBuilder {
 	//CONSTANTS
 	public static final int IS_FULL_TIME=1;
 	public static final int IS_PART_TIME=0;
-	public int EMP_RATE_PER_HRS;
-	public int NUM_WORKING_DAYS;
-	public int MAX_HRS_IN_MONTH;
+	public static int EMP_RATE_PER_HRS;
+	public static int NUM_WORKING_DAYS;
+	public static int MAX_HRS_IN_MONTH;
+	public static int TOTAL_EMP_WAGE;
 
 	public EmpWageBuilder(int EMP_RATE_PER_HRS,int NUM_WORKING_DAYS,int MAX_HRS_IN_MONTH)
 	{
 		this.EMP_RATE_PER_HRS=EMP_RATE_PER_HRS;
 		this.NUM_WORKING_DAYS=NUM_WORKING_DAYS;
 		this.MAX_HRS_IN_MONTH=MAX_HRS_IN_MONTH;
+	}
+
+	public static int getEmpRatePerHrs() {
+		return EMP_RATE_PER_HRS;
+	}
+
+	public static int getMaxWorkingDays() {
+		return MAX_WORKING_DAYS;
+	}
+
+	public static int getMaxHrsInMonth() {
+		return MAX_HRS_IN_MONTH;
 	}
 
 	public void callEmpWage() {
@@ -36,19 +49,19 @@ public class EmpWageBuilder {
 					empHrs=0;
 			}
 			totalEmpHrs += empHrs;
-			empWage = empHrs * EMP_RATE_PER_HRS;
-			totalEmpWage += empWage;
+			System.out.println("Day : " + totalWorkingDays + "Employee hours : " + empHrs);
 		}
-		System.out.println("Employee Wages for month : "+totalEmpWage);
+		TOTAL_EMP_WAGE = totalEmpHrs * getEmpRatePerHrs();
+		return TOTAL_EMP_WAGE;
 	}
 
 	public static void main(String args[]) {
 		System.out.println("Welcome to Employee Wage Computation");
-		EmpWageBuilder bridgelabz=new EmpWageBuilder(20,20,100);
-		EmpWageBuilder capgemini=new EmpWageBuilder(20,20,100);
-		EmpWageBuilder accenture=new EmpWageBuilder(20,20,100);
-		bridgelabz.callEmpWage();
-		capgemini.callEmpWage();
-		accenture.callEmpWage();
+		EmpWageBuilder bridgelabz = new EmpWageBuilder(20, 20, 100 );
+		int wage1 = bridgelabz.callEmpWage();
+		System.out.println("TOTAL EMPLOYEE WAGE FOR BRIDGELABZ : "+wage1);
+		EmpWageBuilder capgminai= new EmpWageBuilder(50, 15, 75 );
+		int wage2 = capgminai.callEmpWage();
+		System.out.println("TOTAL EMPLOYEE WAGE FOR CAPGMINI : "+wage2);
 	}
 }
