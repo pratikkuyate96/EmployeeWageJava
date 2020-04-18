@@ -3,15 +3,18 @@ interface WageComputable {
 	public void callEmpWage(CompanyEmpWage companyObj);
 }
 
-public class EmpWageBuilder {
+public class EmpWageBuilder implements WageComputable {
 	//Constant
 	public final int IS_PART_TIME = 0;
 	public final int IS_FULL_TIME = 1;
 
+	ArrayList<Integer> empDailyAndTotalWage = new ArrayList<Integer>();
 	public void callEmpWage(CompanyEmpWage company) {
 		//variables
 		int empHrs=0;
+		int empDailyWage=0;
 		int totalWorkingDays=0;
+		int empTotalWage=0;
 		int totalEmpHrs=0;
 
 		while ( totalEmpHrs <= company.getMaxHrsInMonth() && totalWorkingDays < company.getMaxWorkingDays() ) {
@@ -29,17 +32,20 @@ public class EmpWageBuilder {
 					empHrs=0;
 			}
 			totalEmpHrs += empHrs;
-			System.out.println("Day : " + totalWorkingDays + " Employee hours : " + empHrs);
+			empDailyWage=empHrs*company.getEmpRatePerHrs();
+			empDailyAndTotalWage.add(empDailyWage);
+			System.out.println("Day : " + totalWorkingDays + " Employee hours : " + empHrs+ " Employee Daily Wage : " +empDailyWage);
 		}
-		company.setTotalEmpWage(totalEmpHrs * company.getEmpRatePerHrs());
-		System.out.println("Total Wage of " + company.getCompanyName() + " Employee is " + company.getTotalEmpWage());	
+		empDailyAndTotalWage.add(empTotalWage);
+		company.setTotalEmpWage(empTotalWage);
+		System.out.println("Total Wage of " + company.getCompanyName() + " Employee is " + company.getTotalEmpWage());
 	}
 
 	public static void main(String args[]) {
 		System.out.println("Welcome to Employee Wage Computation");
 		EmpWageBuilder empwagecomputation = new EmpWageBuilder();
 		ArrayList<CompanyEmpWage> company = new ArrayList<CompanyEmpWage>();
-	
+
 		company.add( new CompanyEmpWage("BRIDGELABZ",20,20,100));
 		empwagecomputation.callEmpWage(company.get(0));
 
