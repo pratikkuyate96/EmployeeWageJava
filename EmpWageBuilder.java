@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 interface WageComputable {
 	public void callEmpWage(CompanyEmpWage companyObj);
 }
@@ -8,7 +9,7 @@ public class EmpWageBuilder implements WageComputable {
 	public final int IS_PART_TIME = 0;
 	public final int IS_FULL_TIME = 1;
 
-	ArrayList<Integer> empDailyAndTotalWage = new ArrayList<Integer>();
+	ArrayList<Integer> empDailyAndTotalWage = new ArrayList<Integer> ();
 	public void callEmpWage(CompanyEmpWage company) {
 		//variables
 		int empHrs=0;
@@ -34,11 +35,12 @@ public class EmpWageBuilder implements WageComputable {
 			totalEmpHrs += empHrs;
 			empDailyWage=empHrs*company.getEmpRatePerHrs();
 			empDailyAndTotalWage.add(empDailyWage);
-			System.out.println("Day : " + totalWorkingDays + " Employee hours : " + empHrs+ " Employee Daily Wage : " +empDailyWage);
+			//System.out.println("Day : " + totalWorkingDays + " Employee hours : " + empHrs+ " Employee Daily Wage : " +empDailyWage);
 		}
+		empTotalWage=totalEmpHrs * company.getEmpRatePerHrs();
 		empDailyAndTotalWage.add(empTotalWage);
 		company.setTotalEmpWage(empTotalWage);
-		System.out.println("Total Wage of " + company.getCompanyName() + " Employee is " + company.getTotalEmpWage());
+		//System.out.println("Total Wage of " + company.getCompanyName() + " Employee is " + company.getTotalEmpWage());
 	}
 
 	public static void main(String args[]) {
@@ -51,6 +53,28 @@ public class EmpWageBuilder implements WageComputable {
 
 		company.add( new CompanyEmpWage("CAPGMINI",50,15,100));
 		empwagecomputation.callEmpWage(company.get(1));
+
+		while(true) {
+			System.out.println("Enter which companys you have to calculate total wages");
+			System.out.println("1 for BRIDGELABZ");
+			System.out.println("2 for CAPGMINI");
+			System.out.println("3 exit");
+			Scanner scanner=new Scanner(System.in);
+
+			int choice=scanner.nextInt();
+			switch(choice) {
+				case 1:
+					System.out.println("total Employee wage of BRIDGELABZ is:"+company.get(0).getTotalEmpWage());
+					break;
+				case 2:
+					System.out.println("total Emp Wage of CAPGMINI:"+company.get(1).getTotalEmpWage());
+					break;
+				case 3:
+					System.exit(0);
+				default:
+					System.out.println("Invalid option");
+			}
+		}
 	}
 }
 
